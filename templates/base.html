@@ -12,17 +12,37 @@
     <link rel="stylesheet" href="{% static 'styles.css' %}">
 </head>
 <body>
-<h2><a href="{% url 'articles:list'%}">LOGO</a></h2>
+<header>
+    <h2><a href="{% url 'articles:list'%}">LOGO</a></h2>
 <nav>
     <ul>
+        {% if user.is_authenticated %}
         <li>
             <form class="logout-link" action="{% url 'accounts:logout' %}" method="post">
                 {% csrf_token %}
                 <button type="submit">logout</button>
             </form>
         </li>
+        </ul>
+    <ul>
+        <li>
+            <a class="highlight" href="{% url 'articles:create' %}">Create new Articles</a>
+        </li>
+        </ul>
+        {% else %}
+    <ul>
+        <li>
+            <a href="{% url 'accounts:login' %}">Login</a>
+        </li>
+        </ul>
+    <ul>
+        <li>
+            <a href="{% url 'accounts:signup' %}">Signup</a>
+        </li>
+        {% endif %}
     </ul>
 </nav>
+</header>
 <div class="wrapper">
 {% block content %}
 {% endblock %}

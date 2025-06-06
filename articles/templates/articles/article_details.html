@@ -3,12 +3,13 @@
         {{ article.title }}
 {% endblock %}
 {% block content %}
-<div class="artcle_details">
+<div class="article-details">
     <div class="article">
         <img src="{{ article.image.url }}" alt="">
         <h1>{{ article.title }}</h1>
         <p>{{ article.body }}</p>
         <p>{{ article.date }}</p>
+        <p>added by {{ article.author.username }}</p>
     </div>
 </div>
 {% endblock %}
